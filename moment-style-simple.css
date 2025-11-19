@@ -1,0 +1,572 @@
+/* ========================================
+   moment - サッカー成長記録アプリ LP
+   Simple Version - Based on Cheese Academy
+   ======================================== */
+
+/* --- カラー定義 --- */
+:root {
+    --primary-green: #00B074;
+    --primary-dark: #008C5A;
+    --primary-light: #E8F8F3;
+    --accent-yellow: #FFB800;
+    --white: #FFFFFF;
+    --black: #0A0A0A;
+    --gray-50: #F9FAFB;
+    --gray-100: #F3F4F6;
+    --gray-600: #4B5563;
+    --gray-700: #374151;
+    --gray-800: #1F2937;
+    --gray-900: #111827;
+}
+
+/* --- 基本スタイル --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.7;
+    color: var(--gray-800);
+    background-color: var(--white);
+}
+
+.wrap {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- ナビゲーション --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo {
+    width: 100%;
+    max-width: 200px;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    display: block;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.nav a {
+    color: var(--gray-800);
+    text-decoration: none;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.nav a:hover {
+    color: var(--accent-yellow);
+}
+
+/* --- メインビジュアル --- */
+.mainvisual {
+    position: relative;
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+/* 【修正】背景画像の上に半透明のオーバーレイを追加して、テキストの視認性を向上 */
+.mainvisual::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 【修正】黒色を40%の透明度で重ねる（rgba: R, G, B, 透明度） */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* 【修正】z-index: 1で画像の上に配置（テキストはz-index: 2） */
+    z-index: 1;
+}
+
+.mainvisual img {
+    width: 100%;
+    height: auto;
+}
+
+/* 【修正】大きなテキストのスタイル */
+.mainmessa {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white);
+    font-size: 32px;
+    font-weight: bold;
+    white-space: nowrap;
+    text-align: center;
+    /* 【修正】テキストに影をつけて、背景との対比を強める */
+    /* 右に2px、下に2px、ぼかし8pxの黒い影（透明度60%） */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    /* 【修正】z-index: 2でオーバーレイの上に配置 */
+    z-index: 2;
+}
+
+/* 【修正】小さなテキストのスタイル */
+.mainmessa2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--white);
+    font-size: 20px;
+    white-space: nowrap;
+    text-align: center;
+    /* 【修正】テキストに影をつけて、背景との対比を強める */
+    /* 右に2px、下に2px、ぼかし8pxの黒い影（透明度60%） */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    /* 【修正】z-index: 2でオーバーレイの上に配置 */
+    z-index: 2;
+}
+
+/* --- コンテンツ --- */
+.content {
+    width: 100%;
+}
+
+section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.section-title {
+    color: var(--primary-green);
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.section-subtitle {
+    font-size: 16px;
+    color: var(--gray-700);
+    margin-bottom: 40px;
+}
+
+/* --- ABOUT セクション --- */
+.about {
+    text-align: center;
+}
+
+.about-text {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    line-height: 2;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+    color: var(--gray-700);
+}
+
+.pic {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.pic img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+/* --- 問題セクション --- */
+.problem {
+    background-color: var(--gray-50);
+}
+
+.problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.problem-card {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.problem-icon {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+.problem-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: var(--gray-900);
+}
+
+.problem-card p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.8;
+}
+
+.logo-green {
+    color: var(--primary-green);  /* #00B074 の緑 */
+    font-size: 40px;
+    font: bold;
+}
+
+/* --- FEATURES セクション --- */
+.features {
+    background-color: var(--white);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto 80px;
+}
+
+.feature-card {
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.feature-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.feature-number {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--gray-600);
+    margin-bottom: 16px;
+}
+
+.feature-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    color: var(--gray-900);
+}
+
+.feature-card p {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.8;
+}
+
+/* --- 使い方セクション --- */
+.how-it-works {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: var(--gray-50);
+    border-radius: 12px;
+}
+
+.how-it-works h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    color: var(--gray-900);
+}
+
+.steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.step {
+    flex: 1;
+    text-align: center;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-green);
+    color: var(--white);
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.step h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: var(--gray-900);
+}
+
+.step p {
+    font-size: 13px;
+    color: var(--gray-600);
+}
+
+.step-arrow {
+    font-size: 24px;
+    color: var(--gray-300);
+    flex-shrink: 0;
+}
+
+/* --- BENEFITS セクション --- */
+.benefits {
+    background-color: var(--white);
+}
+
+.benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.benefit-card {
+    background: var(--gray-50);
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: left;
+    border-top: 4px solid var(--primary-green);
+}
+
+.benefit-card.player {
+    border-top-color: var(--accent-yellow);
+}
+
+.benefit-label {
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--gray-600);
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+}
+
+.benefit-card h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: var(--gray-900);
+    text-align: left;
+}
+
+.benefit-card p {
+    color: var(--gray-700);
+    line-height: 1.8;
+    margin-bottom: 24px;
+    text-align: left;
+}
+
+.benefit-list {
+    list-style: none;
+    text-align: left;
+}
+
+.benefit-list li {
+    padding-left: 24px;
+    margin-bottom: 12px;
+    position: relative;
+    color: var(--gray-600);
+    font-size: 14px;
+}
+
+.benefit-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-green);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* --- CTA最終セクション --- */
+.cta-final {
+    background-color: var(--primary-light);
+    text-align: center;
+}
+
+.cta-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--accent-yellow);
+    color: var(--gray-900);
+    font-size: 16px;
+    font-weight: bold;
+    padding: 16px 40px;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(255, 184, 0, 0.2);
+}
+
+.cta-button:hover {
+    opacity: 0.9;
+}
+
+.cta-arrow {
+    font-size: 18px;
+}
+
+.app-badges {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.badge {
+    display: inline-block;
+    background-color: var(--gray-900);
+    color: var(--white);
+    padding: 12px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.badge:hover {
+    opacity: 0.8;
+}
+
+.cta-features {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.cta-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gray-700);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.cta-feature-item .check {
+    color: var(--primary-green);
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* --- フッター --- */
+footer {
+    width: 100%;
+    background-color: var(--gray-900);
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer {
+    width: 100%;
+}
+
+.copyright {
+    color: var(--white);
+    font-size: 14px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* --- レスポンシブ --- */
+@media (max-width: 1024px) {
+    .problem-grid,
+    .feature-grid,
+    .benefit-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+    
+    .mainmessa {
+        font-size: 24px;
+    }
+    
+    .mainmessa2 {
+        font-size: 16px;
+    }
+    
+    .problem-grid,
+    .feature-grid,
+    .benefit-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .steps {
+        flex-direction: column;
+    }
+    
+    .step-arrow {
+        transform: rotate(90deg);
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+}
